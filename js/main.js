@@ -17,7 +17,7 @@ const initApp = () => {
         event.preventDefault();
         processSubmission();
     });
-
+    
     const clearItems = document.getElementById("clearItems");
     clearItems.addEventListener("click", (event) => {
         const list = toDolist.getList();
@@ -30,11 +30,28 @@ const initApp = () => {
             }
         }
     });
-
+    addInitialQuestion();
     // Procedural
     loadListObject(); 
     refreshThePage();
 };
+
+const addInitialQuestion = () => {
+    const div = document.createElement("div");
+    div.className = "item";
+    const check = document.createElement("input");
+    check.type = "checkbox";
+    check.id = "ageChecker";
+    check.tabIndex = 0;
+    addClickListenerToCheckbox(check);
+    const label = document.createElement("label");
+    label.textContent = "This is it!!!";
+    div.appendChild(check);
+    div.appendChild(label);
+    const container = document.getElementById("listItems");
+    container.appendChild(div);
+}
+
 
 const loadListObject = () => {
     const storedList = localStorage.getItem("myToDolist");
@@ -47,6 +64,7 @@ const loadListObject = () => {
 };
 
 const refreshThePage = () => {
+    
     clearTheListDisplay();
     renderList();
     clearTheItemEntryField();
@@ -78,12 +96,12 @@ const buildListItem = (item) => {
     div.className = "item";
     const check = document.createElement("input");
     check.type = "checkbox";
-    check.id = item.getId();
+    check.id = "new";
     check.tabIndex = 0;
     addClickListenerToCheckbox(check);
     const label = document.createElement("label");
-    label.htmlFor = item.getId();
-    label.textContent = item.getItem();
+    label.htmlFor = "new";
+    label.textContent = "ZickeZacke";
     div.appendChild(check);
     div.appendChild(label);
     const container = document.getElementById("listItems");
@@ -92,7 +110,7 @@ const buildListItem = (item) => {
 
 const addClickListenerToCheckbox = (checkbox) => {
     checkbox.addEventListener("click", (event) => {
-        toDolist.removeItemFromList(checkbox.id);
+        console.log("huhu!")
         udpatePersistentData(toDolist.getList());
         setTimeout(() => {
             refreshThePage();
