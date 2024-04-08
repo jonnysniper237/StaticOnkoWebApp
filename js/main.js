@@ -9,7 +9,7 @@ var riskFactors = [1];
 const container = document.getElementById("mainQuestions");
 const maxNumberOfRiskFactorPages = 5;
 const symptomPage = 7;
-const testRiskFactor = false;
+var testRiskFactor = false;
 
 
 // Launch app
@@ -28,38 +28,9 @@ const initApp = () => {
         clearTheListDisplay();
         
         riskFactors[page] = calculateRiskFactor();
-        if (testRiskFactor){
-            
-            const riskFactorDiv = document.createElement('div');
-            riskFactorDiv.id = 'riskFactor_div';
-            const pageTitles = ['init', 'Sex/Age', 'Smoker', 'Second Hand Smoke', 'Pollutant Load', 'Genetic Factor'];
-            
-            for (var i=0; i<riskFactors.length; i++){
-                
-                if (i < pageTitles.length){
-                    const text = 'Page ' + i + ' -> ' + pageTitles[i] + ': ' + riskFactors[i];
-                    const pTest = document.createElement('p');
-                    const pTestNode = document.createTextNode(text);
-                    pTest.appendChild(pTestNode);
-                    riskFactorDiv.appendChild(pTest);
-                }
-                else{
-                    alert('oops, something went wrong...');
-                }
-                
-            }
-
-            var finalRiskFactor = riskFactors.reduce((a,b) => a * b, 1);
-            const pTest = document.createElement('p');
-            pTest.style.fontWeight = 'bold';
-            const pTestNode = document.createTextNode('Final Risk Factor: ' + finalRiskFactor);
-            pTest.appendChild(pTestNode);
-            riskFactorDiv.appendChild(pTest);
-
-            container.appendChild(riskFactorDiv);
-        }
-        page++;
         
+        page++;
+        addRiskFactorDebug();
         addNextSubQuestion();
         
 
@@ -67,6 +38,7 @@ const initApp = () => {
 
     const backButton = document.getElementById("backButton");
     backButton.addEventListener("click", (event) => {
+        
         if (page == symptomPage){
             page = maxNumberOfRiskFactorPages;
         }
@@ -77,9 +49,12 @@ const initApp = () => {
         currentSection = 0;
         
         clearTheListDisplay();
+        addRiskFactorDebug();
         addNextSubQuestion();
         
+        
     });
+
 
     // const itemEntryForm = document.getElementById("itemEntryForm");
     // itemEntryForm.addEventListener("submit", (event) => {
@@ -105,8 +80,57 @@ const initApp = () => {
     // refreshThePage();
     //hideButtonById("backButton");
     addNextSubQuestion();
+    addRiskFactorDebugCheckbox();
 };
 
+const addRiskFactorDebug = () => {
+    if (testRiskFactor && page > 0 && page <= maxNumberOfRiskFactorPages +1){
+            
+            
+        const riskFactorDiv = document.createElement('div');
+        riskFactorDiv.id = 'riskFactor_div';
+        
+        const pageTitles = ['init', 'Geschlecht/Alter', 'Raucher', 'Passivrauch', 'Schadstoffbelastung', 'Genetik'];
+        
+        for (var i=0; i<riskFactors.length; i++){
+            
+            if (i < pageTitles.length && i > 0){
+                const text = pageTitles[i] + ': ' + riskFactors[i];
+                const spanTest = document.createElement('span');
+                // spanTest.innerHTML += "<br>";
+                spanTest.innerHTML += text + '<br>';
+                spanTest.style.fontSize = '10px';
+                
+                riskFactorDiv.appendChild(spanTest);
+            }
+            else{
+                //alert('oops, something went wrong...');
+            }
+        }
+        if (page > 1){
+            var finalRiskFactor = riskFactors.reduce((a,b) => a * b, 1);
+            finalRiskFactor = Math.round(finalRiskFactor * 100) / 100
+            const pTest = document.createElement('span');
+            // pTest.innerHTML += "<br>";
+            pTest.innerHTML += 'Gesamt Risikofaktor: ' + finalRiskFactor;
+            pTest.style.fontWeight = 'bold';
+            pTest.style.fontSize = '10px';
+            riskFactorDiv.appendChild(pTest);
+        }
+        container.appendChild(riskFactorDiv);
+    }
+}
+const addRiskFactorDebugCheckbox = () => {
+    const riskDebugCheckbox = document.createElement('input');
+    riskDebugCheckbox.type = 'checkbox';
+    riskDebugCheckbox.addEventListener('change',function() {
+        testRiskFactor = this.checked;
+        if (!testRiskFactor){
+            container.removeChild(document.getElementById('riskFactor_div'));
+        }
+    }) 
+    container.appendChild(riskDebugCheckbox);
+}
 const addInitialQuestion = () => {
     const div = document.createElement("div");
     div.id = "mainPage";
@@ -120,10 +144,13 @@ const addInitialQuestion = () => {
     "<b>C34.8 Bronchus und Lunge</b><br>mehrere Teilbereiche überlappend<br><br>" +
     "<b>C34.9 Bronchus und Lunge</b><br>nicht näher bezeichnet<br><br>";
     
+    
     //const container = document.getElementById("mainQuestions");
     container.appendChild(div);
     
+    
 }
+
 
 const askForSex = () => {
     const div = document.createElement("div");
