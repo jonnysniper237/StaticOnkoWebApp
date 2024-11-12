@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Token Claims anzeigen</title>
-    <script src="https://cdn.jsdelivr.net/npm/jsonwebtoken@8.5.1/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsonwebtoken@8.5.1/game.min.js" type="module"></script>
 </head>
 <body>
     <h1>Token Claims</h1>
     <div id="claims"></div>
 
     <script>
-        const express = require('express');
         const jwt = require('jsonwebtoken');
-        const app = express();
-
         const token = req.headers['authorization'].split(' ')[1];
         const decoded = jwt.decode(token);
+        console.log(decoded);
+        
         document.getElementById('claims').innerText = JSON.stringify(decoded, null, 2);
     </script>
 </body>
