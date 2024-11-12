@@ -10,7 +10,7 @@
   "runtime": {
     "rest": {
       "enabled": true,
-      "path": "/game/rest"
+      "path": "/rest"
     },
     "graphql": {
       "allow-introspection": true,
