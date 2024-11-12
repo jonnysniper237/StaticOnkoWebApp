@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Token Claims anzeigen</title>
-    <script src="https://cdn.jsdelivr.net/npm/jsonwebtoken@8.5.1/game.min.js" type="module"></script>
 </head>
 <body>
     <h1>Token Claims</h1>
     <div id="claims"></div>
+    <!--
+        tutorial to connect SWA CLI for SQL Emulation
+        https://www.youtube.com/watch?v=9O4qZ6VHOIA
 
-    <script>
-        const jwt = require('jsonwebtoken');
-        const token = req.headers['authorization'].split(' ')[1];
-        const decoded = jwt.decode(token);
-        console.log(decoded);
-        
-        document.getElementById('claims').innerText = JSON.stringify(decoded, null, 2);
-    </script>
+        tutorial Azure:
+        https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-sql?tabs=bash&pivots=static-web-apps-rest
+    -->
+    
 </body>
+<script>
+    var data = {};
+    async function list() {
+        const endpoint = '/data-api/rest/Person';
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        console.table(data.value);
+
+    }
+    list();
+</script>
 </html>
