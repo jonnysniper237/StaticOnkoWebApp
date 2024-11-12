@@ -20,7 +20,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": ["http://localhost:4280"],
+        "origins": ["https://zealous-grass-0f35c8003.4.azurestaticapps.net/game"],
         "allow-credentials": false
       },
       "authentication": {
