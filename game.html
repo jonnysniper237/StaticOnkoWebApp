@@ -1,56 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/style.min.css"/>
-    <script src="js/main.js" type="module"></script>
-    <title>Shit Head</title>
+    <title>Benutzeranmeldung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <!--<section class="newItemEntry">
-            <form id="itemEntryForm">
-                <label for="newItem">Enter a new to do items</label>
-                <input id="newItem" type="text" size="40" autocomplete="off" placeholder="Add Item" tabindex="0"/>
-                <button id="addItem" class="button" title="Add new item" arial-label="Add new item to list" tabindex="0">+</button>
-            </form>
-        </section>
-    -->
-        <section class="listContainer">
-            <div class="listTitle">
-                <h1>Shitte Heade</h1>
-                <!--
-                <button id="clearItems" class="button" title="Clear the list" aria-label="Remove all items from the list" tabindex="0">Clear</button>
-                -->
-            </div>
-            <hr />
-            <div id="mainQuestions">
-                
-            </div>
-            <!--
-            <div id="listItems">
-                
-                 <div class="item">
-                    <input type="checkbox" id="1" tabindex="0">
-                    <label for="1">eat</label>
-                </div>
-                <div class="item">
-                    <input type="checkbox" id="2" tabindex="0">
-                    <label for="2">sleep</label> 
-                </div>
-            </div>
-            -->
-        </section>
-        <section class="navigationButtons">
-            <button type="button" id="backButton" class="button">Zurück</button>
-            <button type="button" id="nextButton" class="button">Weiter</button>
-            <!-- <button id="symptomsButton" class="button">Symptome</button> -->
-        </section>
-    </main>
+    <div class="login-container">
+        <h2>Anmeldung</h2>
+        <form action="/login" method="post">
+            <input type="text" name="username" placeholder="Benutzername" required>
+            <input type="password" name="password" placeholder="Passwort" required>
+            <button type="submit">Anmelden</button>
+        </form>
+    </div>
 </body>
 </html>
