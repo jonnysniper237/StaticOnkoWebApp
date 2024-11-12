@@ -15,9 +15,16 @@
         tutorial Azure:
         https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-sql?tabs=bash&pivots=static-web-apps-rest
     -->
-    
+    <p style="font-size:20px;color:rgb(219, 0, 0)">
+        No Errors
+    </p>
 </body>
 <script>
+    window.addEventListener("error", errorLog);
+    // String to Prepare Error Paragraph
+    let errorString = "";
+    const pElement = document.querySelector('p');
+
     var data = {};
     async function list() {
         const endpoint = '/data-api/rest/Person';
@@ -25,7 +32,30 @@
         const data = await response.json();
         console.table(data.value);
 
+
+        
     }
     list();
+
+    function errorLog(event) {
+        let msg = source = lineno 
+            = colno = error = time = "";
+        event.preventDefault();
+        msg = event.message;
+        source = event.filename;
+        lineno = event.lineno;
+        colno = event.colno;
+        error = event.error;
+        time = event.time;
+            
+        errorString = `Script Error was Found<br>
+        Message-: ${msg}<br>Source Info-: ${source}
+        <br>Line No-: ${lineno}<br>Column No-: 
+        ${colno}<br>Error Info-: ${error}<br>Time 
+        at which Error Occurred-: ${time}ms after 
+        Page Load<br><br><br><br>`;
+            
+        pElement.innerHTML = errorString;
+    }
 </script>
 </html>
