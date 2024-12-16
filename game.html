@@ -27,7 +27,7 @@
 
     var data = {};
     async function list() {
-        const endpoint = '/data-api/entities/ShitHeads';
+        const endpoint = '/data-api/rest/ShitHeads';
         const response = await fetch(endpoint);
         const data = await response.json();
         console.table(data.value);
