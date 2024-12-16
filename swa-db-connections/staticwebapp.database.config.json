@@ -34,7 +34,7 @@
       "permissions": [
         {
           "actions": ["create", "read", "update", "delete"],
-          "role": "anonymous"
+          "role": "anonym"
         }
       ]
     }
