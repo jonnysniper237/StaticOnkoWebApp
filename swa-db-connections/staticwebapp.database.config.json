@@ -29,7 +29,7 @@
     }
   },
   "entities": {
-    "Name": {
+    "ShitHeads": {
       "source": "dbo.ShitHeads",
       "permissions": [
         {
