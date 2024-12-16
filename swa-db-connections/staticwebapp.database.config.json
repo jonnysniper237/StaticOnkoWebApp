@@ -29,12 +29,12 @@
     }
   },
   "entities": {
-    "Person": {
+    "Name": {
       "source": "dbo.ShitHeads",
       "permissions": [
         {
-          "actions": ["create", "read", "update", "delete"],
-          "role": "anonym"
+          "actions": ["*"],
+          "role": "anonymous"
         }
       ]
     }
